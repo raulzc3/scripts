@@ -1,0 +1,21 @@
+#!/bin/bash
+# Este script actualiza automáticamente los cambios en GitHub o GitLab
+
+
+
+if [ -d .git ];
+then
+    read -p "Escribe detalles del commit: " contenido
+    if [ "$contenido" ];
+    then        
+        git add --all
+        git commit -m "$contenido"
+         #Ojo, solo funcionará con los commits realizados en la rama master, para cambios en otras ramas no servirá
+        git push -u origin master
+    else
+        read -rsp $'No puedes dejar un commit en blanco\n'
+    fi
+        
+else echo "La carpeta indicada no es un repositorio"
+fi
+
