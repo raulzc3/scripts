@@ -1,0 +1,12 @@
+#!/bin/bash
+
+
+port=$(lsof -i :3000 | awk '$8 == "TCP" { print $2 }')
+
+if [ "$port" ];
+then
+	kill $port;
+	echo "Proceso $port eliminado con éxito";
+else
+	echo "Actualmente no hay ningún proceso asociado al puerto 3000"; 
+fi;
